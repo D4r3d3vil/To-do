@@ -81,15 +81,13 @@ save()
 <h2><i>{project.name}</i>: </h2>
 add a task:<br><input placeholder="name" bind:value={project.text} class="add"><button on:click={() => addtask(project.id, project.text)} class="addbutton">add</button>
 <br>
-<br>
-<button on:click={() => deletelist(project.id)} style="background-color: white;">delete list 🗑️</button>
 {#if project.tasks.length > 0}
     {#each project.tasks as task}
     {#if !task.deleted}
     {#if !task.done}
-    <div class="task"><i class="taskname">{task.name}</i><button on:click={() => finish_task(task.id, project.name)} class="delete ss">✔️</button><button on:click={() => delete_task(task.id, project.name)} class="delete">🗑️</button></div><br>
+    <div class="task"><i class="taskname">{task.name}</i><button on:click={() => finish_task(task.id, project.name)} class="delete ss">✔️</button><button on:click={() => delete_task(task.id, project.name)} class="delete">🗑️</button></div>
     {:else}
-    <div class="finished task"><i class="taskname">{task.name}</i><button on:click={() => finish_task(task.id, project.name)} class="delete ss">✔️</button><button on:click={() => delete_task(task.id, project.name)} class="delete">🗑️</button></div><br>
+    <div class="finished task"><i class="taskname">{task.name}</i><button on:click={() => finish_task(task.id, project.name)} class="delete ss">✔️</button><button on:click={() => delete_task(task.id, project.name)} class="delete">🗑️</button></div>
     {/if}
     {/if}
     {/each}
@@ -97,6 +95,7 @@ add a task:<br><input placeholder="name" bind:value={project.text} class="add"><
 <p>no tasks yet.</p>
 {/if}
 </div>
+<div class="deletediv"><button on:click={() => deletelist(project.id)} style="background-color: white;" class="deletebutton">delete list 🗑️</button></div>
 {/if}
 {/each}
 </div>
@@ -105,7 +104,8 @@ add a task:<br><input placeholder="name" bind:value={project.text} class="add"><
         text-decoration: line-through;
     }
     .task{
-        margin-left: 8vw;
+        margin-left: 4vw;
+        margin-top: 0.5vh;
         font-size: 20px;
         border: solid 2px black;
         width: 70vw;
@@ -116,7 +116,6 @@ add a task:<br><input placeholder="name" bind:value={project.text} class="add"><
         background-size: 300% 300%;
         position:relative;
         word-wrap: break-word;
-        margin-top: 0.5vh;
     }
     h2{
         font-size: 30px;
@@ -136,7 +135,7 @@ add a task:<br><input placeholder="name" bind:value={project.text} class="add"><
         position: absolute;
         right:    0;
         bottom:   0;
-        margin-right: 2.5vw;
+        font-size: 15px;
     }
     button{ background-color: transparent;border: solid 0.5px black; }
     @-webkit-keyframes gradient {
@@ -185,9 +184,6 @@ a{
 .addbutton{
     background-color: white;
 }
-.ss{
-    margin-right: 1vw;
-}
 .sub{
     background-color: white;
     margin-left: -3.75vw;
@@ -207,6 +203,7 @@ a{
     margin-top: 2vh;
     overflow-y: scroll;
     max-height: 25vh;
+    scroll-behavior: smooth;
 }
 .in{
     display: inline;
@@ -214,5 +211,14 @@ a{
 .addinp{
 height: 3vh;
 width: 20vw;
+}
+.ss{
+    margin-right: 4vw;
+}
+.deletediv{
+    margin-left: 10vw;
+}
+.deletebutton{
+    width: 80.2vmin;
 }
 </style>
