@@ -186,8 +186,8 @@ a{
 }
 .sub{
     background-color: white;
-    margin-left: -3.75vw;
-    height: 3.5vh;
+    margin-left: -12vw;
+    height: 2vh;
 }
 .addlist{
     text-align: center;
@@ -209,8 +209,8 @@ a{
     display: inline;
 }
 .addinp{
-height: 3vh;
-width: 20vw;
+height: 2vh;
+width: 30vw;
 }
 .ss{
     margin-right: 4vw;
@@ -219,6 +219,6 @@ width: 20vw;
     margin-left: 10vw;
 }
 .deletebutton{
-    width: 80.2vmin;
+    width: 80.2vw;
 }
 </style>
