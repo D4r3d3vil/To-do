@@ -1,6 +1,6 @@
 <script>
 import {browser} from '$app/environment'
-let inp, projects, task, list;
+let projects, list;
 if(browser && localStorage.getItem("data") == undefined){
     browser && localStorage.setItem("data", JSON.stringify([{name:"first list", deleted:false, tasks:[{name:"first task",id:Math.random(), finished:false, deleted:false, id:Math.random()}]}]))
 }
@@ -8,7 +8,6 @@ projects = browser && localStorage.getItem("data")
 if(projects != []){
 projects = JSON.parse(projects)
 }
-console.log(projects)
 function delete_task(task_id, belongsTo){
     for(let i=0; i<projects.length; i++){
     if(projects[i].name == belongsTo) {
@@ -79,7 +78,7 @@ save()
 {#if !project.deleted}
 <div class="list">
 <h2><i>{project.name}</i>: </h2>
-add a task:<br><input placeholder="name" bind:value={project.text} class="add"><button on:click={() => addtask(project.id, project.text)} class="addbutton">add</button>
+<br><input placeholder="Add a task" bind:value={project.text} class="add"><button on:click={() => addtask(project.id, project.text)} class="addbutton">add</button>
 <br>
 {#if project.tasks.length > 0}
     {#each project.tasks as task}
@@ -165,11 +164,8 @@ a{
     font-size: 20px;
     text-decoration: none;
     border: solid 1px black;
-    background: linear-gradient(-45deg, lightblue, yellow, lightgreen );
     color: black;
-    background-size: 300% 300%;
-    -webkit-animation: gradient 10s ease infinite;
-	        animation: gradient 10s ease infinite;
+    background-color: white;
     display: flex;
     align-self: center;
     text-align: center;
@@ -184,16 +180,12 @@ a{
 .addbutton{
     background-color: white;
 }
-.sub{
-    background-color: white;
-    margin-left: -12vw;
-    height: 2vh;
-}
 .addlist{
     text-align: center;
     font-size: 1.5vw;
 }
 .list{
+    height: fit-content;
     overflow-x: hidden;
     text-align: center;
     border: solid 1px black;
@@ -202,8 +194,9 @@ a{
     background-color: white;
     margin-top: 2vh;
     overflow-y: scroll;
-    max-height: 25vh;
     scroll-behavior: smooth;
+    max-height: 50vh;
+    resize:vertical;
 }
 .in{
     display: inline;
